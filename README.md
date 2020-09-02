@@ -1,8 +1,8 @@
 # StdFutureWatcher
-Simple analog of QFutureWatcher for std::future with std::async
+Simple headeronly analog of QFutureWatcher for std::future with std::async
 
 ## How to use? 
-### This is simple example of using this util with Qt
+### This is simple [example](https://github.com/Childcity/StdFutureWatcher/blob/master/example/main.cpp) of using this util class with Qt
 ```cpp
   #include "../src/futurewatcher.hpp"
 
