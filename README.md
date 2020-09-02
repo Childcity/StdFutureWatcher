@@ -1,7 +1,7 @@
 # FutureWatcher
 Simple headeronly analog of [QFutureWatcher](https://doc.qt.io/qt-5/qfuturewatcher.html) for [std::future](https://en.cppreference.com/w/cpp/thread/future) with [std::async](https://en.cppreference.com/w/cpp/thread/async).
 
-**FutureWatcher** provides waiter thread for waiting on `std::future`. 
+**FutureWatcher** provides waiter thread for waiting on `std::future`. After **FutureWatcher** destruction, future set with `setFuture()` will be automatic destroyed.
 
 Use the `setFuture()` function to start watching a particular `std::future`. 
 
@@ -11,7 +11,6 @@ The `getResult()` function returns the result of future (without any blocking of
 
 The `sigResultReady` signal will be rised when future, set with `setFuture()`, got the result.
 
-After **FutureWatcher** destruction, future set with `setFuture()` will be automatic destroyed.
 
 ## How to use? 
 ### This is simple [example](https://github.com/Childcity/StdFutureWatcher/blob/master/example/main.cpp) of using this util class with Qt
