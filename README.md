@@ -1,7 +1,12 @@
 # FutureWatcher
-Simple headeronly analog of [QFutureWatcher](https://doc.qt.io/qt-5/qfuturewatcher.html) for std::future with [std::async](https://en.cppreference.com/w/cpp/thread/async)
+Simple headeronly analog of [QFutureWatcher](https://doc.qt.io/qt-5/qfuturewatcher.html) for [std::future](https://en.cppreference.com/w/cpp/thread/future) with [std::async](https://en.cppreference.com/w/cpp/thread/async)
 
-**FutureWatcher** provides waiter thread for waiting on `std::future`. Use the `setFuture()` function to start watching a particular `std::future`. The `getFuture()` function returns the `std::shared_ptr` to future set with `setFuture()`.
+**FutureWatcher** provides waiter thread for waiting on `std::future`. Use the `setFuture()` function to start watching a particular `std::future`. 
+
+The `getFuture()` function returns the `std::shared_ptr` to future set with `setFuture()`.
+
+The `getResult()` function returns the result of future (without any blocking of current thread)
+
 After **FutureWatcher** destruction, future set with `setFuture()` will be automatic destroyed.
 
 ## How to use? 
