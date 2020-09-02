@@ -9,7 +9,7 @@ The `getFuture()` function returns the `std::shared_ptr` to future set with `set
 
 The `getResult()` function returns the result of future (without any blocking of current thread).
 
-The `sigResultReady` signal will be rised when future, set with `setFuture()`, get the result.
+The `sigResultReady` signal will be rised when future, set with `setFuture()`, got the result.
 
 After **FutureWatcher** destruction, future set with `setFuture()` will be automatic destroyed.
 
