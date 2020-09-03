@@ -26,7 +26,6 @@ public:
 
     ~FutureWatcherBase() override
     {
-        //DEBUG("~FutureWatcherBase ->"<<QThread::currentThreadId())
         if (waiterThread_) {
             if (waiterThread_->isRunning()) {
                 waiterThread_->disconnect(waiterThread_, &QThread::finished, nullptr, nullptr);
@@ -35,22 +34,18 @@ public:
                 waiterThread_ = nullptr;
             }
         }
-        //DEBUG("~FutureWatcherBase <-")
     }
 
 protected:
     template<class FResult>
     void startWatching(std::shared_ptr<std::future<FResult>> futureToWait)
     {
-        //DEBUG("futureToWait" << futureToWait->valid())
-
         // don't support invalid future here
         assert(futureToWait->valid());
 
         waiterThread_ = QThread::create([futureToWait = std::move(futureToWait)] {
             // waiting on future in background thread
             futureToWait->wait();
-            //DEBUG("sigResultReady:" << futureToWait->valid()<<QThread::currentThreadId())
         });
 
         assert(waiterThread_);
@@ -73,15 +68,10 @@ public:
         : FutureWatcherBase(parent)
     {}
 
-    ~FutureWatcher() override
-    {
-        //DEBUG("~FutureWatcher");
-    }
+    ~FutureWatcher() override {}
 
     void setFuture(std::future<FResult> future) override
     {
-        //DEBUG("setFuture future" << future.valid())
-
         // future_ must be invalid. If future_ is valid, then future_ has set before
         // FutureWatcher is watching only for one future
         assert(! future_);
