@@ -15,21 +15,21 @@ The `sigResultReady` signal will be rised when future, set with `setFuture()`, g
 ## How to use? 
 ### This is simple [example](https://github.com/Childcity/StdFutureWatcher/blob/master/example/main.cpp) of using this util class with Qt
 ```cpp
-    // Example of using FutureWatcher
-    {
-        // For convenience simplify long type name
-        using FutureWatcher = childcity::StdFutureWatcher::FutureWatcher<std::vector<int>>;
+// Example of using FutureWatcher
+{
+    // For convenience simplify long type name
+    using FutureWatcher = childcity::StdFutureWatcher::FutureWatcher<std::vector<int>>;
 
-        // Create FutureWatcher for async task
-        FutureWatcher backgroundTaskWatcher;
+    // Create FutureWatcher for async task
+    FutureWatcher backgroundTaskWatcher;
 
-        // Connect sigResultReady to some slot callback, that will be executed, when future result will be available
-        QObject::connect(&backgroundTaskWatcher, &FutureWatcher::sigResultReady, &myObject, &MyClass::handleResult);
+    // Connect sigResultReady to some slot callback, that will be executed, when future result will be available
+    QObject::connect(&backgroundTaskWatcher, &FutureWatcher::sigResultReady, &myObject, &MyClass::handleResult);
 
-        // Create and run async task (call function in background thread)
-        std::future<std::vector<int>> future = std::async(std::launch::async, ...  );
-        
-        // Move future to backgroundTaskWatcher that immidiatly starts to wait on future in background thread
-        backgroundTaskWatcher.setFuture(std::move(future));
-    }
+    // Create and run async task (call function in background thread)
+    std::future<std::vector<int>> future = std::async(std::launch::async, ...  );
+
+    // Move future to backgroundTaskWatcher that immidiatly starts to wait on future in background thread
+    backgroundTaskWatcher.setFuture(std::move(future));
+}
 ```
