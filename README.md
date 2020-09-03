@@ -1,4 +1,4 @@
-# FutureWatcher
+# FutureWatcher (std::future watcher)
 Simple headeronly analog of [QFutureWatcher](https://doc.qt.io/qt-5/qfuturewatcher.html) for [std::future](https://en.cppreference.com/w/cpp/thread/future) with [std::async](https://en.cppreference.com/w/cpp/thread/async).
 
 **FutureWatcher** provides waiter thread for waiting on `std::future`. After **FutureWatcher** destruction, future set with `setFuture()` will be automatic destroyed.
